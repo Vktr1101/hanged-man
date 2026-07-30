@@ -1,0 +1,220 @@
+body {
+    background-color: steelblue;
+    color: black;
+    font-family: 'Poppins';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/*login*/
+header {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    transition: 0.5s;
+}
+
+header a:hover {
+    color: darkslategray;
+    transition: 0.3s;
+}
+
+
+/*home*/
+#title {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 0.6s;
+    margin: 0;
+    font-size: 55px;
+}
+
+#title.moved-up {
+    top: 8%;
+}
+
+#subtitle {
+    font-size: 40px;
+    padding-top: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#play {
+    color: black;
+    text-decoration: none;
+    font-size: 34px;
+    font-family: 'Poppins';
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 12px 117px;
+    border-radius: 10px;
+    background-color: #8842ac;
+    transition: 0.3s;
+}
+
+#history {
+    color: black;
+    text-decoration: none;
+    font-size: 34px;
+    font-family: 'Poppins';
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 12px 100px;
+    border-radius: 10px;
+    background-color: #8842ac;
+    transition: 0.3s;
+}
+
+#play:hover, #history:hover {
+    background-color: #285c83;
+    transition: 0.5s;
+}
+
+.fade-out-home {
+    transition: opacity 0.5s;
+}
+
+.fade-out-game {
+    transition: opacity 0.5s;
+}
+
+.slide-up {
+    transition: transform 0.5s;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/*game*/
+#game {
+    display: none;
+    transition: opacity 0.5s;
+}
+
+#draw {
+    margin-top: 40px;
+    visibility: hidden;
+    justify-content: center;
+}
+
+#word {
+    font-size: 44px;
+    letter-spacing: 6px;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+#wrong {
+    font-size: 30px;
+    margin-top: 50px;
+}
+
+@keyframes dropIn {
+    0%   { transform: translateY(-100px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+#lose-message {
+    font-size: 40px;
+    margin-top: 10px;
+    height: 50px;
+}
+
+#lose-message.animate {
+    animation: dropIn 1s;
+}
+
+@keyframes fadeIn {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+#sln {
+    font-size: 50px;
+    font-weight: bold;
+    margin-top: 80px;
+    height: 50px;
+}
+
+#sln.animate {
+    animation: fadeIn 1.7s;
+}
+
+@keyframes tada {
+    0%   { transform: scale(1); }
+    30%  { transform: scale(1.2) rotate(-3deg); }
+    50%  { transform: scale(1.2) rotate(3deg); }
+    70%  { transform: scale(1.2) rotate(-3deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+#win-message {
+    padding-top: 20px;
+    margin-top: -60px;
+    margin-bottom: -90px;
+    font-size: 50px;
+    font-weight: bold;
+    height: 50px;
+}
+
+#win-message.animate {
+    animation: tada 0.8s;
+}
+
+#restart {
+    margin-top: 50px;
+    color: black;
+    font-family: 'Poppins';
+    text-decoration: none;
+    font-size: 34px;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 12px 47px;
+    border-radius: 10px;
+    background-color: #8842ac;
+    transition: 0.3s;
+}
+
+#backHome {
+    color: black;
+    font-family: 'Poppins';
+    text-decoration: none;
+    font-size: 34px;
+    flex-direction: column;
+    border: 2px solid black;
+    padding: 12px 24px;
+    border-radius: 10px;
+    background-color: #8842ac;
+    transition: 0.3s;
+}
+
+#restart:hover, #backHome:hover {
+    background-color: #285c83;
+    transition: 0.5s;
+}
+
+#draw, #word, #wrong, #win-message, #lose-message, #sln {
+    transition: opacity 0.4s;
+}
