@@ -159,7 +159,7 @@ header a:hover {
 }
 
 #sln.animate {
-    animation: fadeIn 1.7s;
+    animation: fadeIn 3s;
 }
 
 @keyframes tada {

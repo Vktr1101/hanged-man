@@ -3,7 +3,6 @@ const newGame = document.querySelector('#restart');
 const backHome = document.querySelector('#backHome');
 const word = document.querySelector('#word');
 
-const cuvinte = ['javascript', 'programare', 'monitor', 'dreptunghi', 'elefant'];
 let cuvant, jocTerminat, litereGhicite, litereGresite, jocActiv = false;
 
 function afiseazaCuvant() {
@@ -36,8 +35,11 @@ function fadeTranzitie(elemente, actiune) {
     }, 400);
 }
 
-function startGame() {
-    cuvant = cuvinte[Math.floor(Math.random() * cuvinte.length)];
+async function startGame() {
+    const raspuns = await fetch('/api/cuvant');
+    const date = await raspuns.json();
+    cuvant = date.cuvant;
+
     litereGhicite = [];
     litereGresite = [];
     jocTerminat = false;
