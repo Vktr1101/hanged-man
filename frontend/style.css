@@ -11,21 +11,53 @@ body {
     margin: 0;
 }
 
-/*login*/
-header {
+
+/*login header*/
+#login {
     position: absolute;
     top: 20px;
     right: 20px;
-}
-
-header a {
     text-decoration: none;
     color: black;
     font-size: 18px;
     transition: 0.5s;
 }
 
-header a:hover {
+#login:hover {
+    color: darkslategray;
+    transition: 0.3s;
+}
+
+
+/*back home header*/
+#backHomeReg {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    transition: 0.5s;
+}
+
+#backHomeReg:hover {
+    color: darkslategray;
+    transition: 0.3s;
+}
+
+
+/*back register header*/
+#backRegPage {
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    transition: 0.5s;
+}
+
+#backRegPage:hover {
     color: darkslategray;
     transition: 0.3s;
 }
@@ -217,4 +249,70 @@ header a:hover {
 
 #draw, #word, #wrong, #win-message, #lose-message, #sln {
     transition: opacity 0.4s;
+}
+
+
+/*login / register*/
+#register-login {
+    font-size: 55px;
+    margin-top: -110px;
+    padding-bottom: 20px;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form input {
+    display: block;
+    width: 455px;
+    font-size: 20px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-family: 'Poppins';
+    background-color: #285c83;
+    color: black;
+}
+
+#form input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #285c83 inset;
+    -webkit-text-fill-color: black;
+}
+
+#form input::placeholder {
+    color: black;
+    opacity: 0.6;
+}
+
+#registerBtn {
+    color: black;
+    font-family: 'Poppins';
+    font-size: 30px;
+    border: 2px solid black;
+    padding: 12px 40px;
+    border-radius: 10px;
+    background-color: #8842ac;
+    transition: 0.3s;
+    margin-top: 30px;
+}
+
+#registerBtn:hover {
+    background-color: #285c83;
+}
+
+
+#accountExists {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: 15px;
+    display: block;
+}
+
+#accountExists:hover {
+    text-decoration: underline;
 }

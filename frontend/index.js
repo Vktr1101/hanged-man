@@ -35,6 +35,22 @@ function fadeTranzitie(elemente, actiune) {
     }, 400);
 }
 
+async function verificaLogin() {
+    const raspuns = await fetch('/api/me');
+    const date = await raspuns.json();
+    const login = document.querySelector('#login');
+
+    if (date.loggedIn) {
+        login.innerHTML = `<i class="fa-solid fa-circle-user"></i>&nbsp;${date.user.username}`;
+        login.href = '#';
+
+        login.addEventListener('click', async () => {
+            await fetch('/api/logout', { method: 'POST' });
+            window.location.reload();
+        });
+    }
+}
+
 async function startGame() {
     const raspuns = await fetch('/api/cuvant');
     const date = await raspuns.json();
@@ -131,3 +147,5 @@ document.addEventListener('keydown', (e) => {
         win.classList.add('animate');
     }
 });
+
+verificaLogin();
