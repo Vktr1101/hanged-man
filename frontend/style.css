@@ -190,7 +190,7 @@ body {
 }
 
 #sln.animate {
-    animation: fadeIn 3s;
+    animation: fadeIn 1.8s;
 }
 
 @keyframes tada {
@@ -356,11 +356,53 @@ body {
 /*history*/
 #historyTitle {
     font-size: 48px;
+    padding-bottom: 10px;
 }
 
-#historyList {
+#total {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+#filterBy {
+    font-size: 26px;
+    margin-bottom: -10px;
+}
+
+#filters {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+#filterDate, #filterResult {
+    font-family: 'Poppins';
+    font-size: 16px;
+    padding: 8px 8px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #285c83;
+    color: black;
+    cursor: pointer;
+}
+
+#historyTable {
+    border-collapse: collapse;
+    margin: 20px auto;
     font-size: 28px;
-    padding-bottom: 36px;
+    padding-bottom: 26px;
+}
+
+#historyTable th {
+    border: 2px solid black;
+    background-color: #285c83;
+    padding: 12px 20px;
+}
+
+#historyTable td {
+    border: 2px solid black;
+    padding: 12px 20px;
 }
 
 #homeMessage {

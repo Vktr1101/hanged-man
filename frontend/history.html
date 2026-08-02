@@ -17,7 +17,33 @@
 
     <main>
         <h1 id="historyTitle"><u>History</u></h1>
-        <div id="historyList"></div>
+
+        <div id="total"></div>
+
+        <div id="filterBy"></div>
+
+        <div id="filters">
+            <input type="date" id="filterDate">
+            <select id="filterResult">
+                <option value="any">Any</option>
+                <option value="win">Win</option>
+                <option value="lose">Lose</option>
+            </select>
+        </div>
+
+        <table id="historyTable">
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Result</th>
+                    <th>Mistakes</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+        </table>
+
+        <div id="homeMessage"></div>
     </main>
 
     <button id="scrollTop">&uArr;</button>

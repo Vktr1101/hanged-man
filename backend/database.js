@@ -1,4 +1,5 @@
 import Database from 'better-sqlite3';
+import { readFileSync } from 'fs';
 
 const db = new Database('hangedman.db');
 
@@ -22,5 +23,23 @@ db.exec(`
         FOREIGN KEY (userId) REFERENCES Users(id)
     )
 `);
+
+db.exec(`
+    CREATE TABLE IF NOT EXISTS Words (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        word TEXT UNIQUE NOT NULL
+    )
+`);
+
+const count = db.prepare('SELECT COUNT(*) AS n FROM Words').get().n;
+if (count === 0) {
+    const cuvinte = JSON.parse(readFileSync('words.json', 'utf-8'));
+    const insert = db.prepare('INSERT OR IGNORE INTO Words (word) VALUES (?)');
+    const insertMany = db.transaction((lista) => {
+        for (const cuvant of lista) insert.run(cuvant);
+    });
+    insertMany(cuvinte);
+    console.log(`${cuvinte.length} cuvinte incarcate in Words`);
+}
 
 export default db;

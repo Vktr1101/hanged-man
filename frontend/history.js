@@ -1,25 +1,48 @@
-const historyList = document.querySelector('#historyList');
+const historyBody = document.querySelector('#historyBody');
 const scrollTop = document.querySelector('#scrollTop');
+const message = document.querySelector('#homeMessage');
+const total = document.querySelector('#total');
+const filterBy = document.querySelector('#filterBy');
+
+let emoji, toateJocurile = [];
+
+function afiseazaJocuri(jocuri) {
+    historyBody.innerHTML = '';
+
+    jocuri.forEach(joc => {
+        const rand = document.createElement('tr');
+        const data = new Date(joc.date).toLocaleString('ro-RO');
+        if (joc.result === 'win') {
+            emoji = '&#127881;';
+        } else {
+            emoji = '&#10060';
+        }
+
+        rand.innerHTML = `
+            <td>&nbsp;${joc.word.toUpperCase()}&nbsp;</td>
+            <td>&nbsp;${emoji}&nbsp;<b>${joc.result.toUpperCase()}</b>&nbsp;${emoji}&nbsp;</td>
+            <td>${joc.mistakes}/10</td>
+            <td>&nbsp;${data}&nbsp;</td>
+        `;
+
+        historyBody.appendChild(rand);
+    });
+}
 
 async function incarcaIstoric() {
     const raspuns = await fetch('/api/games');
     const date = await raspuns.json();
 
-    if (!date.success) {
-        historyList.textContent = date.error;
-        return;
-    }
-
     if (date.games.length === 0) {
-        historyList.textContent = 'Nu ai jucat niciun joc pana acum!';
+        message.textContent = 'Joaca macar o data pentru a avea istoric!';
         return;
     }
 
-    date.games.forEach(joc => {
-        const div = document.createElement('div');
-        div.textContent = `${joc.word.toUpperCase()} - ${joc.result} - ${joc.mistakes}/10 greseli`;
-        historyList.appendChild(div);
-    });
+    toateJocurile = date.games;
+    total.textContent = `Total jocuri: ${date.games.length}`;
+    filterBy.textContent = 'Filter by:';
+
+    afiseazaJocuri(toateJocurile);
 }
 
 scrollTop.addEventListener('click', () => {
@@ -35,4 +58,29 @@ window.addEventListener('scroll', () => {
     }
 });
 
+function aplicaFiltre() {
+    const dataAleasa = document.querySelector('#filterDate').value;
+    const rezultatTip = document.querySelector('#filterResult').value;
+
+    const filtrate = toateJocurile.filter(joc => {
+        const trecRezultat = rezultatTip === 'any' || joc.result === rezultatTip;
+
+        const ziuaJocului = joc.date.slice(0, 10);
+        const trecData = dataAleasa === '' || ziuaJocului === dataAleasa;
+
+        return trecRezultat && trecData;
+    });
+
+    afiseazaJocuri(filtrate);
+
+    if (filtrate.length === 0) {
+        total.textContent = '';
+        return;
+    }
+
+    total.textContent = `Total jocuri: ${filtrate.length}`;
+}
+
+document.querySelector('#filterDate').addEventListener('change', aplicaFiltre);
+document.querySelector('#filterResult').addEventListener('change', aplicaFiltre);
 incarcaIstoric();

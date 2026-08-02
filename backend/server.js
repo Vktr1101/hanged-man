@@ -20,11 +20,22 @@ app.use(session({
     saveUninitialized: true
 }));
 
-const cuvinte = ['javascript', 'programare', 'monitor', 'dreptunghi', 'elefant'];
-
 app.get('/api/cuvant', (req, res) => {
-    const cuvant = cuvinte[Math.floor(Math.random() * cuvinte.length)];
-    res.json({ cuvant: cuvant });
+    let cuvant;
+
+    if (req.session.user) {
+        cuvant = db.prepare(`
+            SELECT word FROM Words
+            WHERE word NOT IN (
+                SELECT word FROM Games WHERE userId = ? AND result = 'win';
+                )
+                ORDER BY RANDOM() LIMIT 1
+        `).get(req.session.user.id);
+    } else {
+        cuvant = db.prepare('SELECT word FROM Words ORDER BY RANDOM() LIMIT 1').get();
+    }
+
+    res.json({ cuvant: cuvant.word });
 });
 
 app.post('/api/register', async (req, res) => {
