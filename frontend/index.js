@@ -1,9 +1,10 @@
 const play = document.querySelector('#play');
+const history = document.querySelector('#history');
 const newGame = document.querySelector('#restart');
 const backHome = document.querySelector('#backHome');
 const word = document.querySelector('#word');
 
-let cuvant, jocTerminat, litereGhicite, litereGresite, jocActiv = false;
+let cuvant, jocTerminat, litereGhicite, litereGresite, jocActiv = false, esteLogat = false;
 
 function afiseazaCuvant() {
     const afisat = cuvant
@@ -38,9 +39,11 @@ function fadeTranzitie(elemente, actiune) {
 async function verificaLogin() {
     const raspuns = await fetch('/api/me');
     const date = await raspuns.json();
+
+    esteLogat = date.loggedIn;
     const login = document.querySelector('#login');
 
-    if (date.loggedIn) {
+    if (esteLogat) {
         login.innerHTML = `<i class="fa-solid fa-circle-user"></i>&nbsp;${date.user.username}`;
         login.href = '#';
 
@@ -49,6 +52,18 @@ async function verificaLogin() {
             window.location.reload();
         });
     }
+}
+
+async function salveazaJoc(rezultat) {
+    await fetch('/api/game', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            word: cuvant,
+            result: rezultat,
+            mistakes: litereGresite.length
+        })
+    });
 }
 
 async function startGame() {
@@ -89,6 +104,18 @@ play.addEventListener('click', () => {
             document.querySelectorAll('.fade-out-game').forEach(el => el.classList.remove('hidden'));
         });
     }, 500);
+
+    document.querySelector('#homeMessage').textContent = '';
+});
+
+history.addEventListener('click', (e) => {
+    if (!esteLogat) {
+        e.preventDefault();
+        document.querySelector('#homeMessage').textContent = 'Trebuie sa fii conectat pentru a avea istoric!';
+        document.querySelector('#homeMessage').classList.remove('animate');
+        document.querySelector('#homeMessage').offsetWidth;
+        document.querySelector('#homeMessage').classList.add('animate');
+    }
 });
 
 newGame.addEventListener('click', () => {
@@ -139,12 +166,16 @@ document.addEventListener('keydown', (e) => {
         sln.classList.add('animate');
 
         jocTerminat = true;
+        salveazaJoc('lose');
     }
 
     if (cuvant.split('').every(l => litereGhicite.includes(l))) {
         const win = document.querySelector('#win-message');
         win.textContent = 'Felicitari! Ai castigat!';
         win.classList.add('animate');
+
+        jocTerminat = true;
+        salveazaJoc('win');
     }
 });
 

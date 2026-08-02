@@ -75,12 +75,37 @@ app.post('/api/logout', (req, res) => {
     res.json({ success: true });
 });
 
-app.get('/api/me/', (req, res) => {
+app.get('/api/me', (req, res) => {
     if (req.session.user) {
         res.json({ loggedIn: true, user: req.session.user });
     } else {
         res.json({ loggedIn: false });
     }
+});
+
+app.post('/api/game', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'Trebuie sa fii conectat pentru a vedea istoricul!' });
+    }
+
+    const { word, result, mistakes } = req.body;
+    const date = new Date().toISOString();
+
+    db.prepare('INSERT INTO Games (userId, word, result, mistakes, date) VALUES (?, ?, ?, ?, ?)')
+        .run(req.session.user.id, word, result, mistakes, date);
+
+    res.json({ success: true });
+});
+
+app.get('/api/games', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'Trebuie sa fii conectat pentru a vedea istoricul!' });
+    }
+
+    const games = db.prepare('SELECT word, result, mistakes, date FROM Games WHERE userId = ? ORDER BY date DESC')
+        .all(req.session.user.id);
+
+    res.json({ success: true, games });
 });
 
 app.listen(PORT, () => {

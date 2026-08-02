@@ -11,78 +11,81 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1 class="slide-up" id="title"><u>Hanged Man</u></h1>
+    <h1 class="slide-up" id="title"><u>Hanged Man</u></h1>
 
-<div id="home">
-    <header>
-        <a href="register.html" id="login" class="fade-out-home"><i class="fa-solid fa-circle-user"></i>&nbsp;Login / Register</a>
-    </header>
+    <div id="home">
+        <header>
+            <a href="register.html" id="login" class="fade-out-home"><i class="fa-solid fa-circle-user"></i>&nbsp;Login / Register</a>
+        </header>
 
-    <main>
-        <h1 class="fade-out-home" id="subtitle">Develop Your Vocabulary!</h1>
-        <div class="container">
-            <button class="fade-out-home" id="play"><b>Play!</b></button>
-            <a href="history.html" class="fade-out-home" id="history"><b>History</b></a>
-        </div>
-    </main>
-</div>
+        <main>
+            <h1 class="fade-out-home" id="subtitle">Develop Your Vocabulary!</h1>
 
-<div id="game">
-    <main>
-        <svg class="fade-out-game" id="draw" width="200" height="250">
-            <!--baza + stalp-->
-            <g id="p1">
-                <line x1="20" y1="230" x2="20" y2="20" stroke="black" stroke-width="4"></line>
-                <line x1="5" y1="230" x2="35" y2="230" stroke="black" stroke-width="4"></line>
-            </g>
+            <div class="container">
+                <button class="fade-out-home" id="play"><b>Play!</b></button>
+                <a href="history.html" class="fade-out-home" id="history"><b>History</b></a>
+            </div>
 
-            <!--suport-->
-            <g id="p2">
-                <line x1="18" y1="20" x2="130" y2="20" stroke="black" stroke-width="4"></line>
-                <line x1="20" y1="40" x2="40" y2="20" stroke="black" stroke-width="4"></line>
-            </g>
+            <div id="homeMessage" class="fade-out-home"></div>
+        </main>
+    </div>
 
-            <!--sfoara-->
-            <line id="p3" x1="120" y1="45" x2="120" y2="20" stroke="black" stroke-width="4"></line>
+    <div id="game">
+        <main>
+            <svg class="fade-out-game" id="draw" width="200" height="250">
+                <!--baza + stalp-->
+                <g id="p1">
+                    <line x1="20" y1="230" x2="20" y2="20" stroke="black" stroke-width="4"></line>
+                    <line x1="5" y1="230" x2="35" y2="230" stroke="black" stroke-width="4"></line>
+                </g>
 
-            <!--cap-->
-            <circle id="p4" cx="120" cy="65" r="20" stroke="black" stroke-width="4" fill="none"></circle>
+                <!--suport-->
+                <g id="p2">
+                    <line x1="18" y1="20" x2="130" y2="20" stroke="black" stroke-width="4"></line>
+                    <line x1="20" y1="40" x2="40" y2="20" stroke="black" stroke-width="4"></line>
+                </g>
 
-            <!--corp-->
-            <line id="p5" x1="120" y1="85" x2="120" y2="140" stroke="black" stroke-width="4"></line>
+                <!--sfoara-->
+                <line id="p3" x1="120" y1="45" x2="120" y2="20" stroke="black" stroke-width="4"></line>
 
-            <!--picioare-->
-            <line id="p6" x1="120" y1="138" x2="100" y2="185" stroke="black" stroke-width="4"></line>
-            <line id="p7" x1="120" y1="138" x2="140" y2="185" stroke="black" stroke-width="4"></line>
+                <!--cap-->
+                <circle id="p4" cx="120" cy="65" r="20" stroke="black" stroke-width="4" fill="none"></circle>
 
-            <!--maini-->
-            <line id="p8" x1="120" y1="100" x2="95" y2="125" stroke="black" stroke-width="4"></line>
-            <line id="p9" x1="120" y1="100" x2="145" y2="125" stroke="black" stroke-width="4"></line>
+                <!--corp-->
+                <line id="p5" x1="120" y1="85" x2="120" y2="140" stroke="black" stroke-width="4"></line>
 
-            <!--fata-->
-            <g id="p10">
-                <circle cx="128" cy="60" r="2" stroke="black" stroke-width="4" fill="black"></circle>
-                <circle cx="112" cy="60" r="2" stroke="black" stroke-width="4" fill="black"></circle>
-                <path d="M 112 78 Q 120 70 128 78" stroke="black" stroke-width="3" fill="none"></path>
-            </g>
-        </svg>
+                <!--picioare-->
+                <line id="p6" x1="120" y1="138" x2="100" y2="185" stroke="black" stroke-width="4"></line>
+                <line id="p7" x1="120" y1="138" x2="140" y2="185" stroke="black" stroke-width="4"></line>
 
-        <div class="fade-out-game" id="word"></div>
+                <!--maini-->
+                <line id="p8" x1="120" y1="100" x2="95" y2="125" stroke="black" stroke-width="4"></line>
+                <line id="p9" x1="120" y1="100" x2="145" y2="125" stroke="black" stroke-width="4"></line>
 
-        <div class="fade-out-game" id="wrong"></div>
+                <!--fata-->
+                <g id="p10">
+                    <circle cx="128" cy="60" r="2" stroke="black" stroke-width="4" fill="black"></circle>
+                    <circle cx="112" cy="60" r="2" stroke="black" stroke-width="4" fill="black"></circle>
+                    <path d="M 112 78 Q 120 70 128 78" stroke="black" stroke-width="3" fill="none"></path>
+                </g>
+            </svg>
 
-        <div class="fade-out-game" id="lose-message"></div>
+            <div class="fade-out-game" id="word"></div>
 
-        <div class="fade-out-game" id="win-message"></div>
+            <div class="fade-out-game" id="wrong"></div>
 
-        <div class="fade-out-game" id="sln"></div>
+            <div class="fade-out-game" id="lose-message"></div>
 
-        <div class="container">
-            <button class="fade-out-game" id="restart"><b>New Game</b></button>
-            <button class="fade-out-game" id="backHome"><b>Back to Home</b></button>
-        </div>
-    </main>
-</div>
+            <div class="fade-out-game" id="win-message"></div>
+
+            <div class="fade-out-game" id="sln"></div>
+
+            <div class="container">
+                <button class="fade-out-game" id="restart"><b>New Game</b></button>
+                <button class="fade-out-game" id="backHome"><b>Back to Home</b></button>
+            </div>
+        </main>
+    </div>
 
 <script type="module" src="index.js"></script>
 
