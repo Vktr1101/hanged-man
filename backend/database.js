@@ -1,7 +1,12 @@
 import Database from 'better-sqlite3';
 import { readFileSync } from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-const db = new Database('hangedman.db');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const db = new Database(path.join(__dirname, 'hangedman.db'));
 
 db.exec(`
     CREATE TABLE IF NOT EXISTS Users (
@@ -33,7 +38,7 @@ db.exec(`
 
 const count = db.prepare('SELECT COUNT(*) AS n FROM Words').get().n;
 if (count === 0) {
-    const cuvinte = JSON.parse(readFileSync('words.json', 'utf-8'));
+    const cuvinte = JSON.parse(readFileSync(path.join(__dirname, 'words.json'), 'utf-8'));
     const insert = db.prepare('INSERT OR IGNORE INTO Words (word) VALUES (?)');
     const insertMany = db.transaction((lista) => {
         for (const cuvant of lista) insert.run(cuvant);
