@@ -1,4 +1,5 @@
 {
+  "start": "node backend/server.js",
   "name": "hanged-man",
   "version": "1.0.0",
   "description": "",
