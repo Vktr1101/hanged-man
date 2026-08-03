@@ -13,10 +13,14 @@ body {
 
 
 /*login header*/
-#login {
+#userHeader {
     position: absolute;
     top: 15px;
     right: 20px;
+    text-align: right;
+}
+
+#login {
     text-decoration: none;
     color: black;
     font-size: 18px;
@@ -25,9 +29,57 @@ body {
 
 #login:hover {
     color: darkslategray;
+}
+
+#dropdown {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #285c83;
+    border-radius: 8px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: 0.3s;
 }
 
+#dropdown.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#dropdown a {
+    padding: 8px 16px;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+    display: block;
+    transition: 0.5s;
+}
+
+#dropdown a:hover {
+    background-color: #8842ac;
+    transition: 0.3s;
+    color: black;
+}
+
+#logoutBtn {
+    color: black;
+    border-bottom: 1px solid black;
+    border-radius: 8px 8px 0 0;
+}
+
+#deleteBtn {
+    color: #c0392b;
+    justify-content: center;
+    border-radius: 0 0 8px 8px;
+    border-top: 1px solid black;
+}
 
 /*back home header*/
 #backHomeReg {
@@ -101,6 +153,7 @@ body {
     border-radius: 10px;
     background-color: #8842ac;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 #history {
@@ -136,6 +189,69 @@ body {
 .hidden {
     opacity: 0;
     pointer-events: none;
+}
+
+
+/*modals*/
+#modalLogout, #modalDelete {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#modalLogout.visible, #modalDelete.visible {
+    display: flex;
+}
+
+.modal {
+    background-color: steelblue;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 50px;
+    text-align: center;
+    max-height: 400px;
+    max-width: 500px;
+}
+
+.modal p {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.modalButtons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+#confirmLogout, #cancelLogout, #confirmDelete, #cancelDelete {
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-size: 16px;
+    background-color: #8842ac;
+    color: black;
+    transition: 0.3s;
+}
+
+#confirmLogout:hover, #confirmDelete:hover {
+    background-color: #c0392b;
+    color: white;
+    transition: 0.5s;
+}
+
+#cancelLogout:hover, #cancelDelete:hover {
+    background-color: #285c83;
+    transition: 0.5s;
 }
 
 
@@ -225,6 +341,7 @@ body {
     border-radius: 10px;
     background-color: #8842ac;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 #backHome {
@@ -238,6 +355,7 @@ body {
     border-radius: 10px;
     background-color: #8842ac;
     transition: 0.3s;
+    cursor: pointer;
 }
 
 #restart:hover, #backHome:hover {
@@ -294,6 +412,7 @@ body {
     background-color: #8842ac;
     transition: 0.3s;
     margin-top: 26px;
+    cursor: pointer;
 }
 
 #registerBtn:hover {
@@ -310,6 +429,7 @@ body {
     background-color: #8842ac;
     transition: 0.3s;
     margin-top: 26px;
+    cursor: pointer;
 }
 
 #loginBtn:hover {

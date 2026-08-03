@@ -14,8 +14,13 @@
     <h1 class="slide-up" id="title"><u>Hanged Man</u></h1>
 
     <div id="home">
-        <header>
+        <header id="userHeader">
             <a href="register.html" id="login" class="fade-out-home"><i class="fa-solid fa-circle-user"></i>&nbsp;Login / Register</a>
+
+            <div id="dropdown">
+                <a id="logoutBtn"><i class="fa-solid fa-door-open"></i>&nbsp;Logout</a>
+                <a id="deleteBtn"><i class="fa-solid fa-trash-can"></i>&nbsp;Delete Account</a>
+            </div>
         </header>
 
         <main>
@@ -28,6 +33,26 @@
 
             <div id="homeMessage" class="fade-out-home"></div>
         </main>
+    </div>
+
+    <div id="modalLogout">
+        <div class="modal">
+            <p>Sigur vrei sa iesi din cont?</p>
+            <div class="modalButtons">
+                <button id="confirmLogout">Confirm</button>
+                <button id="cancelLogout">Anuleaza</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modalDelete">
+        <div class="modal">
+            <p>Sigur vrei sa stergi contul? Actiunea e ireversibila!</p>
+            <div class="modalButtons">
+                <button id="confirmDelete">Confirm</button>
+                <button id="cancelDelete">Anuleaza</button>
+            </div>
+        </div>
     </div>
 
     <div id="game">

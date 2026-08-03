@@ -27,9 +27,9 @@ app.get('/api/cuvant', (req, res) => {
         cuvant = db.prepare(`
             SELECT word FROM Words
             WHERE word NOT IN (
-                SELECT word FROM Games WHERE userId = ? AND result = 'win';
-                )
-                ORDER BY RANDOM() LIMIT 1
+                SELECT word FROM Games WHERE userId = ? AND result = 'win'
+            )
+            ORDER BY RANDOM() LIMIT 1
         `).get(req.session.user.id);
     } else {
         cuvant = db.prepare('SELECT word FROM Words ORDER BY RANDOM() LIMIT 1').get();
@@ -117,6 +117,20 @@ app.get('/api/games', (req, res) => {
         .all(req.session.user.id);
 
     res.json({ success: true, games });
+});
+
+app.post('/api/delete-account', (req, res) => {
+    if (!req.session.user) {
+        return res.status(401).json({ error: 'Nu esti logat' });
+    }
+
+    const userId = req.session.user.id;
+
+    db.prepare('DELETE FROM GAMES WHERE userId = ?').run(userId);
+    db.prepare('DELETE FROM Users WHERE id = ?').run(userId);
+
+    req.session.destroy();
+    res.json({ success: true });
 });
 
 app.listen(PORT, () => {

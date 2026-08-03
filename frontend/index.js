@@ -45,11 +45,57 @@ async function verificaLogin() {
 
     if (esteLogat) {
         login.innerHTML = `<i class="fa-solid fa-circle-user"></i>&nbsp;${date.user.username}`;
-        login.href = '#';
+        login.removeAttribute('href');
+        login.style.cursor = 'default';
+        document.querySelector('#userHeader').classList.add('logged-in');
 
-        login.addEventListener('click', async () => {
+        const userHeader = document.querySelector('#userHeader');
+        const dropdown = document.querySelector('#dropdown');
+
+        userHeader.addEventListener('mouseenter', () => {
+            dropdown.classList.add('visible');
+        });
+
+        userHeader.addEventListener('mouseleave', () => {
+            dropdown.classList.remove('visible');
+        });
+
+        document.querySelector('#logoutBtn').addEventListener('click', () => {
+            document.querySelector('#modalLogout').classList.add('visible');
+        });
+
+        document.querySelector('#confirmLogout').addEventListener('click', async () => {
             await fetch('/api/logout', { method: 'POST' });
             window.location.reload();
+        });
+
+        document.querySelector('#cancelLogout').addEventListener('click', () => {
+            document.querySelector('#modalLogout').classList.remove('visible');
+        });
+
+        document.querySelector('#modalLogout').addEventListener('click', (e) => {
+            if (e.target.id === 'modalLogout') {
+                document.querySelector('#modalLogout').classList.remove('visible');
+            }
+        });
+
+        document.querySelector('#deleteBtn').addEventListener('click', () => {
+            document.querySelector('#modalDelete').classList.add('visible');
+        });
+
+        document.querySelector('#confirmDelete').addEventListener('click', async () => {
+            await fetch('/api/delete-account', { method: 'POST' });
+            window.location.reload();
+        });
+
+        document.querySelector('#cancelDelete').addEventListener('click', () => {
+            document.querySelector('#modalDelete').classList.remove('visible');
+        });
+
+        document.querySelector('#modalDelete').addEventListener('click', (e) => {
+            if (e.target.id === 'modalDelete') {
+                document.querySelector('#modalDelete').classList.remove('visible');
+            }
         });
     }
 }
