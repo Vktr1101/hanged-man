@@ -11,7 +11,13 @@ function afiseazaJocuri(jocuri) {
 
     jocuri.forEach(joc => {
         const rand = document.createElement('tr');
-        const data = new Date(joc.date).toLocaleString('ro-RO');
+        const data = new Date(joc.date).toLocaleString('ro-RO', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
         if (joc.result === 'win') {
             emoji = '&#127881;';
         } else {
@@ -19,10 +25,10 @@ function afiseazaJocuri(jocuri) {
         }
 
         rand.innerHTML = `
-            <td>&nbsp;${joc.word.toUpperCase()}&nbsp;</td>
-            <td>&nbsp;${emoji}&nbsp;<b>${joc.result.toUpperCase()}</b>&nbsp;${emoji}&nbsp;</td>
+            <td>${joc.word.toUpperCase()}</td>
+            <td>${emoji}&nbsp;<b>${joc.result.toUpperCase()}</b>&nbsp;${emoji}</td>
             <td>${joc.mistakes}/10</td>
-            <td>&nbsp;${data}&nbsp;</td>
+            <td>${data}</td>
         `;
 
         historyBody.appendChild(rand);

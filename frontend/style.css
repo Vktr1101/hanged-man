@@ -7,7 +7,8 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 100vh;
+    height: 100%;
+    width: 100%;
     margin: 0;
 }
 
@@ -100,7 +101,7 @@ body {
 
 /*back register header*/
 #backRegPage {
-    position: absolute;
+    position: fixed;
     top: 40px;
     left: 20px;
     text-decoration: none;
@@ -118,7 +119,7 @@ body {
 /*home*/
 #title {
     position: absolute;
-    top: 35%;
+    top: 33%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: top 0.6s;
@@ -132,14 +133,17 @@ body {
 
 #subtitle {
     font-size: 36px;
-    padding-top: 100px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 6px;
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #play {
@@ -197,7 +201,8 @@ body {
     display: none;
     position: fixed;
     top: 0; left: 0;
-    width: 100%; height: 100%;
+    width: 100%;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
@@ -238,18 +243,21 @@ body {
     cursor: pointer;
     font-family: 'Poppins';
     font-size: 16px;
-    background-color: #8842ac;
-    color: black;
-    transition: 0.3s;
 }
 
-#confirmLogout:hover, #confirmDelete:hover {
+#confirmDelete, #confirmLogout {
     background-color: #c0392b;
     color: white;
     transition: 0.5s;
 }
 
-#cancelLogout:hover, #cancelDelete:hover {
+#confirmLogout:hover, #confirmDelete:hover, #cancelLogout:hover, #cancelDelete:hover {
+    background-color: #8842ac;
+    color: black;
+    transition: 0.3s;
+}
+
+#cancelDelete, #cancelLogout {
     background-color: #285c83;
     transition: 0.5s;
 }
@@ -262,9 +270,12 @@ body {
 }
 
 #draw {
-    margin-top: 80px;
     visibility: hidden;
     justify-content: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #word {
@@ -272,21 +283,38 @@ body {
     letter-spacing: 6px;
     font-family: monospace;
     font-weight: bold;
+    position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #wrong {
     font-size: 26px;
-    margin-top: 16px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes dropIn {
-    0%   { transform: translateY(-100px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 #lose-message {
     font-size: 32px;
     height: 50px;
+    position: absolute;
+    bottom: 33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #lose-message.animate {
@@ -294,15 +322,22 @@ body {
 }
 
 @keyframes fadeIn {
-    0%   { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 #sln {
     font-size: 38px;
     font-weight: bold;
-    margin-top: 105px;
     height: 50px;
+    position: absolute;
+    bottom: 28%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #sln.animate {
@@ -310,19 +345,31 @@ body {
 }
 
 @keyframes tada {
-    0%   { transform: scale(1); }
-    30%  { transform: scale(1.2) rotate(-3deg); }
-    50%  { transform: scale(1.2) rotate(3deg); }
-    70%  { transform: scale(1.2) rotate(-3deg); }
-    100% { transform: scale(1) rotate(0); }
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    30% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(-3deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(3deg);
+    }
+    70% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(-3deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0);
+    }
 }
 
 #win-message {
-    margin-top: -50px;
-    margin-bottom: -120px;
     font-size: 42px;
     font-weight: bold;
     height: 50px;
+    position: absolute;
+    bottom: 31%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #win-message.animate {
@@ -330,7 +377,6 @@ body {
 }
 
 #restart {
-    margin-top: 16px;
     color: black;
     font-family: 'Poppins';
     text-decoration: none;
@@ -342,6 +388,10 @@ body {
     background-color: #8842ac;
     transition: 0.3s;
     cursor: pointer;
+    position: absolute;
+    bottom: 14%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #backHome {
@@ -356,6 +406,10 @@ body {
     background-color: #8842ac;
     transition: 0.3s;
     cursor: pointer;
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #restart:hover, #backHome:hover {
@@ -369,17 +423,39 @@ body {
 
 
 /*login / register*/
-#register-login {
+#registerTitle, #loginTitle {
     font-size: 48px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#form {
+#registerTitle {
+    top: 12%;
+}
+
+#loginTitle {
+    top: 18%;
+}
+
+#form, #formLogin {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#form input {
+#form {
+    top: 42%;
+}
+
+#formLogin {
+    top: 38%;
+}
+
+#form input, #formLogin input {
     display: block;
     width: 430px;
     font-size: 20px;
@@ -392,17 +468,17 @@ body {
     color: black;
 }
 
-#form input:-webkit-autofill {
+#form input:-webkit-autofill, #formLogin input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 100px #285c83 inset;
     -webkit-text-fill-color: black;
 }
 
-#form input::placeholder {
+#form input::placeholder, #formLogin input::placeholder {
     color: black;
     opacity: 0.6;
 }
 
-#registerBtn {
+#registerBtn, #loginBtn {
     color: black;
     font-family: 'Poppins';
     font-size: 26px;
@@ -411,28 +487,23 @@ body {
     border-radius: 10px;
     background-color: #8842ac;
     transition: 0.3s;
-    margin-top: 26px;
     cursor: pointer;
 }
-
-#registerBtn:hover {
-    background-color: #285c83;
+#registerBtn {
+    position: absolute;
+    bottom: 23%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #loginBtn {
-    color: black;
-    font-family: 'Poppins';
-    font-size: 26px;
-    border: 2px solid black;
-    padding: 12px 40px;
-    border-radius: 10px;
-    background-color: #8842ac;
-    transition: 0.3s;
-    margin-top: 26px;
-    cursor: pointer;
+    position: absolute;
+    bottom: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#loginBtn:hover {
+#registerBtn:hover, #loginBtn:hover {
     background-color: #285c83;
 }
 
@@ -440,9 +511,11 @@ body {
     color: black;
     text-decoration: none;
     font-size: 16px;
-    margin-top: 6px;
-    margin-bottom: 26px;
     display: block;
+    position: absolute;
+    bottom: 22.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #accountExists:hover {
@@ -453,9 +526,11 @@ body {
     color: black;
     text-decoration: none;
     font-size: 16px;
-    margin-top: 6px;
-    margin-bottom: 26px;
     display: block;
+    position: absolute;
+    bottom: 36.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #forgotPass:hover {
@@ -466,6 +541,10 @@ body {
     font-size: 36px;
     font-weight: bold;
     height: 50px;
+    position: absolute;
+    bottom: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #message.animate {
@@ -529,7 +608,6 @@ body {
     font-size: 36px;
     font-weight: bold;
     height: 50px;
-    padding-top: 20px;
 }
 
 #homeMessage.animate {
@@ -560,4 +638,56 @@ body {
 #scrollTop.visible {
     opacity: 1;
     visibility: visible;
+}
+
+/*telefon*/
+@media (max-width: 600px) {
+    #title {
+        top: 25%;
+        font-size: 54px;
+    }
+
+    #title.moved-up {
+        top: 12%;
+    }
+
+    #subtitle {
+        padding-top: 80px;
+    }
+
+    #register-login {
+        margin-top: -60px;
+        font-size: 54px;
+        padding: 0 6px;
+    }
+
+    #form input, #formLogin input {
+        width: 320px;
+        font-size: 20px;
+    }
+
+    #homeMessage, #message {
+        font-size: 32px;
+        padding: 0 36px;
+    }
+
+    #accountExists, #forgotPass {
+        font-size: 18px;
+    }
+
+    #historyTitle {
+        font-size: 54px;
+    }
+
+    #historyTable {
+        font-size: 14px;
+    }
+
+    #filterDate, #filterResult {
+        font-size: 20px;
+    }
+
+    #historyTable th,#historyTable td {
+        padding: 8px 4px;
+    }
 }
