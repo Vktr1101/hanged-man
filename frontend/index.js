@@ -27,7 +27,7 @@ function afiseazaCuvant() {
 }
 
 function afiseazaGresite() {
-    document.querySelector('#wrong').textContent = 'Litere Gresite: ' + litereGresite.join(', ').toUpperCase();
+    document.querySelector('#wrong').textContent = 'Wrong guesses: ' + litereGresite.join(', ').toUpperCase();
 }
 
 function afiseazaDesen() {
@@ -168,7 +168,7 @@ play.addEventListener('click', () => {
 history.addEventListener('click', (e) => {
     if (!esteLogat) {
         e.preventDefault();
-        document.querySelector('#homeMessage').textContent = 'Trebuie sa fii conectat pentru a avea istoric!';
+        document.querySelector('#homeMessage').textContent = 'You must be logged in to see your history!';
         document.querySelector('#homeMessage').classList.remove('animate');
         document.querySelector('#homeMessage').offsetWidth;
         document.querySelector('#homeMessage').classList.add('animate');
@@ -214,7 +214,7 @@ function proceseazaLitera(litera) {
     if (litereGresite.length >= 10) {
         const lose = document.querySelector('#lose-message');
         const sln = document.querySelector('#sln');
-        lose.textContent = 'Ai pierdut! Cuvantul era:';
+        lose.textContent = 'You lost! The word was:';
         lose.classList.add('animate');
         sln.textContent = cuvant.toUpperCase();
         sln.classList.add('animate');
@@ -224,7 +224,7 @@ function proceseazaLitera(litera) {
 
     if (cuvant.split('').every(l => litereGhicite.includes(l))) {
         const win = document.querySelector('#win-message');
-        win.textContent = 'Felicitari! Ai castigat!';
+        win.textContent = 'Congratulations! You won!';
         win.classList.add('animate');
         jocTerminat = true;
         salveazaJoc('win');

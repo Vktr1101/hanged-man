@@ -14,24 +14,24 @@ createAccount.addEventListener('click', async () => {
     const confirm = document.querySelector('#confirm').value;
 
     if (!username || !email || !password || !confirm) {
-        afiseazaWarning('Toate campurile sunt obligatorii!');
+        afiseazaWarning('All fields are mandatory!');
         return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        afiseazaWarning('Email invalid!');
+        afiseazaWarning('Email is invalid!');
         return;
     }
 
     const passRegex = /^(?=.*[A-Z])(?=.*[0-9]).{6,}$/;
     if (!passRegex.test(password)) {
-        afiseazaWarning('Parola trebuie sa contina minim 6 caractere, o majuscula si o cifra!');
+        afiseazaWarning('The password must contain at least 6 characters, one capital letter and a number!');
         return;
     }
 
     if (password !== confirm) {
-        afiseazaWarning('Parolele nu coincid!');
+        afiseazaWarning('The passwords do not match!');
         return;
     }
 

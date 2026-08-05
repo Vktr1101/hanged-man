@@ -12,7 +12,7 @@ loginAccount.addEventListener('click', async () => {
     const password = document.querySelector('#password').value;
 
     if (!username || !password) {
-        afiseazaWarning('Completati campurile goale!');
+        afiseazaWarning('Fill in all empty fields!');
         return;
     }
 

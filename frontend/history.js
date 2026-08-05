@@ -40,12 +40,12 @@ async function incarcaIstoric() {
     const date = await raspuns.json();
 
     if (date.games.length === 0) {
-        message.textContent = 'Joaca macar o data pentru a avea istoric!';
+        message.textContent = 'Play at least one game to start your history!';
         return;
     }
 
     toateJocurile = date.games;
-    total.textContent = `Total jocuri: ${date.games.length}`;
+    total.textContent = `Game total: ${date.games.length}`;
     filterBy.textContent = 'Filter by:';
 
     afiseazaJocuri(toateJocurile);
@@ -84,7 +84,7 @@ function aplicaFiltre() {
         return;
     }
 
-    total.textContent = `Total jocuri: ${filtrate.length}`;
+    total.textContent = `Game total: ${filtrate.length}`;
 }
 
 document.querySelector('#filterDate').addEventListener('change', aplicaFiltre);

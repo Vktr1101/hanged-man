@@ -42,7 +42,7 @@ app.post('/api/register', async (req, res) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-        return res.status(400).json({ error: 'Toate campurile sunt obligatorii!' });
+        return res.status(400).json({ error: 'All fields are mandatory!' });
     }
 
     try {
@@ -52,9 +52,9 @@ app.post('/api/register', async (req, res) => {
             .run(username, email, hash);
 
         req.session.user = { id: result.lastInsertRowid, username: username };
-        res.json({ success: true, message: 'Cont creat cu succes!' });
+        res.json({ success: true, message: 'Account created successfully!' });
     } catch (e) {
-        res.status(400).json({ error: 'Username sau email deja folosit!' });
+        res.status(400).json({ error: 'Username or email already in use!' });
     }
 });
 
@@ -62,23 +62,23 @@ app.post('/api/login', async (req, res) => {
     const { username, password } = req.body;
 
     if (!username || !password) {
-        return res.status(400).json({ error: 'Toate campurile sunt obligatorii!' });
+        return res.status(400).json({ error: 'All fields are mandatory!' });
     }
 
     const user = db.prepare('SELECT * FROM Users WHERE username = ?').get(username);
 
     if (!user) {
-        return res.status(400).json({ error: 'Username sau parola gresita!' });
+        return res.status(400).json({ error: 'Wrong username or password!' });
     }
 
     const found = await bcrypt.compare(password, user.password);
 
     if (!found) {
-        return res.status(400).json({ error: 'Username sau parola gresita!' });
+        return res.status(400).json({ error: 'Wrong username or password!' });
     }
 
     req.session.user = { id: user.id, username: user.username };
-    res.json({ success: true, message: 'Autentificare reusita!' });
+    res.json({ success: true, message: 'Successful authentication!' });
 });
 
 app.post('/api/logout', (req, res) => {
@@ -96,7 +96,7 @@ app.get('/api/me', (req, res) => {
 
 app.post('/api/game', (req, res) => {
     if (!req.session.user) {
-        return res.status(401).json({ error: 'Trebuie sa fii conectat pentru a vedea istoricul!' });
+        return res.status(401).json({ error: 'You must be logged in to see your history!' });
     }
 
     const { word, result, mistakes } = req.body;
@@ -110,7 +110,7 @@ app.post('/api/game', (req, res) => {
 
 app.get('/api/games', (req, res) => {
     if (!req.session.user) {
-        return res.status(401).json({ error: 'Trebuie sa fii conectat pentru a vedea istoricul!' });
+        return res.status(401).json({ error: 'You must be logged in to see your history!' });
     }
 
     const games = db.prepare('SELECT word, result, mistakes, date FROM Games WHERE userId = ? ORDER BY date DESC')
@@ -121,7 +121,7 @@ app.get('/api/games', (req, res) => {
 
 app.post('/api/delete-account', (req, res) => {
     if (!req.session.user) {
-        return res.status(401).json({ error: 'Nu esti logat' });
+        return res.status(401).json({ error: 'You are not logged in!' });
     }
 
     const userId = req.session.user.id;
@@ -134,5 +134,5 @@ app.post('/api/delete-account', (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`Server pornit pe http://localhost:${PORT}`);
+    console.log(`Server started on http://localhost:${PORT}`);
 });
