@@ -126,7 +126,7 @@ app.post('/api/delete-account', (req, res) => {
 
     const userId = req.session.user.id;
 
-    db.prepare('DELETE FROM GAMES WHERE userId = ?').run(userId);
+    db.prepare('DELETE FROM Games WHERE userId = ?').run(userId);
     db.prepare('DELETE FROM Users WHERE id = ?').run(userId);
 
     req.session.destroy();

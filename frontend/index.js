@@ -5,7 +5,7 @@ const backHome = document.querySelector('#backHome');
 const word = document.querySelector('#word');
 
 const keyboard = document.querySelector('#keyboard');
-const litere = 'abcdefghijklmnopqrstuvwxyz';
+const litere = 'qwertyuiopasdfghjklzxcvbnm';
 
 for (const litera of litere) {
     const btn = document.createElement('button');
