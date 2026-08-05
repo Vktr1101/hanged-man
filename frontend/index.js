@@ -4,6 +4,17 @@ const newGame = document.querySelector('#restart');
 const backHome = document.querySelector('#backHome');
 const word = document.querySelector('#word');
 
+const keyboard = document.querySelector('#keyboard');
+const litere = 'abcdefghijklmnopqrstuvwxyz';
+
+for (const litera of litere) {
+    const btn = document.createElement('button');
+    btn.textContent = litera.toUpperCase();
+    btn.className = 'key';
+    btn.addEventListener('click', () => proceseazaLitera(litera));
+    keyboard.appendChild(btn);
+}
+
 let cuvant, jocTerminat, litereGhicite, litereGresite, jocActiv = false, esteLogat = false;
 
 function afiseazaCuvant() {
@@ -185,12 +196,11 @@ backHome.addEventListener('click', () => {
     }, 500);
 });
 
-document.addEventListener('keydown', (e) => {
+function proceseazaLitera(litera) {
     if (jocTerminat || !jocActiv) return;
-    const litera = e.key.toLowerCase();
     if (litera < 'a' || litera > 'z' || litera.length !== 1) return;
-
     if (litereGhicite.includes(litera) || litereGresite.includes(litera)) return;
+
     if (cuvant.includes(litera)) {
         litereGhicite.push(litera);
     } else {
@@ -204,13 +214,10 @@ document.addEventListener('keydown', (e) => {
     if (litereGresite.length >= 10) {
         const lose = document.querySelector('#lose-message');
         const sln = document.querySelector('#sln');
-
         lose.textContent = 'Ai pierdut! Cuvantul era:';
         lose.classList.add('animate');
-
         sln.textContent = cuvant.toUpperCase();
         sln.classList.add('animate');
-
         jocTerminat = true;
         salveazaJoc('lose');
     }
@@ -219,10 +226,13 @@ document.addEventListener('keydown', (e) => {
         const win = document.querySelector('#win-message');
         win.textContent = 'Felicitari! Ai castigat!';
         win.classList.add('animate');
-
         jocTerminat = true;
         salveazaJoc('win');
     }
+}
+
+document.addEventListener('keydown', (e) => {
+    proceseazaLitera(e.key.toLowerCase());
 });
 
 verificaLogin();
