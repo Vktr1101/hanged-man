@@ -222,6 +222,36 @@ body {
     padding: 0 20px;
 }
 
+#keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    max-width: 480px;
+    margin-top: 10px;
+}
+
+.key {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    border: 2px solid black;
+    border-radius: 6px;
+    background-color: #8842ac;
+    color: black;
+    cursor: pointer;
+}
+
+.key:hover {
+    background-color: #285c83;
+}
+
+.key:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
 #win-message, #lose-message {
     font-size: 2rem;
     font-weight: bold;
@@ -522,35 +552,6 @@ body {
 }
 
 #scrollTop:hover { background-color: #285c83; }
-
-#keyboard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    max-width: 480px;
-    margin-top: 10px;
-}
-
-.key {
-    width: 40px;
-    height: 40px;
-    font-size: 1.1rem;
-    font-family: 'Poppins', sans-serif;
-    border: 2px solid black;
-    border-radius: 6px;
-    background-color: #8842ac;
-    cursor: pointer;
-}
-
-.key:hover {
-    background-color: #285c83;
-}
-
-.key:disabled {
-    opacity: 0.4;
-    cursor: default;
-}
 
 /* =========================================================
    RESPONSIVE — telefon
