@@ -80,7 +80,7 @@ hanged-man/
 ├── backend/
 │   ├── server.js        # Express server: API routes + serving the frontend
 │   ├── database.js      # SQLite connection, table creation, word seeding
-│   ├── words.json       # ~589 English words (5-12 letters)
+│   ├── words.json       # 950 English words (5-12 letters)
 │   └── hangedman.db     # SQLite database (auto-generated, git-ignored)
 ├── frontend/
 │   ├── index.html       # home + game (single page)
@@ -94,6 +94,7 @@ hanged-man/
 │   ├── history.js
 │   └── hangman.png      # every page's icon
 ├── package.json         # dependencies + scripts
+├── package-lock.json  
 ├── .gitignore
 └── README.md
 ```
